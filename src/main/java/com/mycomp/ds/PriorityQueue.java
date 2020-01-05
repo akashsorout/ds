@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class PriorityQueue<E> implements PriorityQueueInterface<PriorityNode<E>> {
 
     private static final Logger LOGGER = Logger.getLogger(PriorityQueue.class.getName());
-    private List<PriorityNode<E>> items = new ArrayList<PriorityNode<E>>();
+    protected List<PriorityNode<E>> items = new ArrayList<PriorityNode<E>>();
 
     public boolean offer(PriorityNode<E> item) {
         if (null == item) {

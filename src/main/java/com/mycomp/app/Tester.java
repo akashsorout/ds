@@ -1,12 +1,11 @@
-/**
- *
- */
+
 package com.mycomp.app;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.mycomp.ds.NSPQ;
 import com.mycomp.ds.PriorityNode;
 import com.mycomp.ds.PriorityQueue;
 import com.mycomp.ds.PriorityQueueInterface;
@@ -14,8 +13,30 @@ import com.mycomp.ds.PriorityQueueInterface;
 public class Tester {
 
     public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        PriorityQueueInterface<PriorityNode<String>> priorityQueue = null;
 
-        PriorityQueueInterface<PriorityNode<String>> priorityQueue = new PriorityQueue<String>();
+        System.out.println("Choose Tester: \n1.\tPriority Queue\n2.\tNSPQ");
+        int testerOption = 0;
+        try {
+            testerOption = Integer.parseInt(bufferedReader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Select a NUMBER");
+        }
+        switch (testerOption) {
+            case 1:
+                priorityQueue = new PriorityQueue<String>();
+                break;
+            case 2:
+                priorityQueue = new NSPQ<String>();
+                break;
+            default:
+                System.out.println("Wrong OPTION Selected !!!");
+                System.exit(0);
+        }
+
+
+
         /*
          * Pre-populated data
          * */
@@ -32,7 +53,6 @@ public class Tester {
             System.out.println("6. Clear");
             System.out.println("7. Exit");
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String input = bufferedReader.readLine();
             int option = 0;
             try {
@@ -54,7 +74,7 @@ public class Tester {
                     System.out.println("Enter the data (String)\n");
                     String data = bufferedReader.readLine();
                     System.out.println("Enter the priority (Integer)\n");
-                    Integer priority = Integer.parseInt(bufferedReader.readLine());
+                    int priority = Integer.parseInt(bufferedReader.readLine());
                     PriorityNode<String> item = new PriorityNode<String>(data, priority);
                     priorityQueue.offer(item);
                     break;
