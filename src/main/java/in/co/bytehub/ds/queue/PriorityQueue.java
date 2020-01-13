@@ -1,4 +1,4 @@
-package com.mycomp.ds;
+package in.co.bytehub.ds.queue;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.mycomp.ds;
+package in.co.bytehub.ds.queue;
 
 public interface PriorityQueueInterface<E extends Comparable> {
 

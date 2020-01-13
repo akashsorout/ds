@@ -1,14 +1,14 @@
 
-package com.mycomp.app;
+package in.co.bytehub.app;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.mycomp.ds.NSPQ;
-import com.mycomp.ds.PriorityNode;
-import com.mycomp.ds.PriorityQueue;
-import com.mycomp.ds.PriorityQueueInterface;
+import in.co.bytehub.ds.queue.NSPQ;
+import in.co.bytehub.ds.queue.PriorityNode;
+import in.co.bytehub.ds.queue.PriorityQueue;
+import in.co.bytehub.ds.queue.PriorityQueueInterface;
 
 public class Tester {
 
