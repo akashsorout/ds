@@ -10,7 +10,7 @@ import in.co.bytehub.ds.queue.PriorityNode;
 import in.co.bytehub.ds.queue.PriorityQueue;
 import in.co.bytehub.ds.queue.PriorityQueueInterface;
 
-public class Tester {
+public class PriorityQueueTester {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
