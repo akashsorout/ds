@@ -38,8 +38,8 @@ public class Heap {
 
 		// size is 0 initially So, add the item as 1-based array index.
 		// So, basically we are appending item in last of array
-
-		heap[++size] = item;
+		size++;
+		heap[size] = item;
 
 		int i = size; // i - is an iterator for tree bottom to up
 
@@ -59,27 +59,44 @@ public class Heap {
 			parentIndex = i / 2; // find new parent of current node
 		}
 	}
-	
+
 	public int peek() {
 		return heap[1];
 	}
 
-	public void print() {
-		for (int x = 0; x < heap.length; x++) {
-			System.out.print("\t" + heap[x]);
-		}
-		System.out.println("");
-		System.out.println("____________________________________________________");
-		int i = 1;
-		while (i <= size) {
-			System.out.println(heap[i]);
-			if (2 * i <= size) {
-				System.out.print(heap[2 * i] + "\t");
-				if ((2 * i + 1) <= size)
-					System.out.println(heap[2 * i + 1]);
+	public int pop() {
+		int item = heap[1];
+		heap[1] = heap[size];
+		heap[size] = 0; // Just removing element
+		size--;
 
+		int i = 1; // Iterator from root
+		while ((i * 2 + 1) <= size) { // it's right index is less than or equal to size
+
+			if (heap[i] >= heap[2 * i] && heap[i] >= heap[2 * i + 1]) {
+				break;
 			}
-			i = 2 * i + 2;
+			int childIndexForSwapping = 0;
+			if (heap[2 * i] >= heap[2 * i + 1]) {
+				childIndexForSwapping = 2 * i; // left child
+			} else {
+				childIndexForSwapping = 2 * i + 1; // right child
+			}
+
+			// swap child with parent
+
+			int temp = heap[childIndexForSwapping];
+			heap[childIndexForSwapping] = heap[i];
+			heap[i] = temp;
+			i = childIndexForSwapping;
 		}
+
+		return item;
+	}
+
+	public void print() {
+		for (int x = 0; x < heap.length; x++)
+			System.out.print("\t" + heap[x]);
+		System.out.println("____________________________________________________");
 	}
 }
