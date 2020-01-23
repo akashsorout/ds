@@ -38,6 +38,8 @@ ROOT will be max
 *PUSH*
 
 [ 0 40 23 13 20 15 5 4 8 10 15 ]
+
+
 image::src/main/resources/heapInsert.png[]
 
 
