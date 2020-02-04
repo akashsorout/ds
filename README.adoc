@@ -58,3 +58,25 @@ image::src/main/resources/heapInsert.png[]
 0 34 23 13 20 15 5 4 8 10 15 11 2 3 0 0
 
 image::src/main/resources/heapDelete.png[]
+
+---
+
+Run `HeapGraphicRepresentation` class
+
+
+
+image::src/main/resources/heapOperation_Init.png[]
+---
+Insert Operation
+
+image::src/main/resources/heapOperation_insert1.png[]
+---
+Once Heap is Full
+
+image::src/main/resources/heapOperation_insert_Full.png[]
+---
+
+Remove Operation
+
+image::src/main/resources/heapOperation_Remove.png[]
+
