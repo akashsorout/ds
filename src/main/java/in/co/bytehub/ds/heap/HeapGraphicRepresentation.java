@@ -14,9 +14,9 @@ public class HeapGraphicRepresentation {
 	private JFrame frame;
 	private JPanel panel;
 	private Heap heap;
-	private static final int HEAP_SIZE = 25;
-	private final int buttonWidth = 52;
-	private final int buttonHeight = 29;
+	private static final int HEAP_SIZE = 16;
+	private final int buttonWidth = 50;
+	private final int buttonHeight = 25;
 
 	/**
 	 * Launch the application.
@@ -253,50 +253,65 @@ public class HeapGraphicRepresentation {
 
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(6, 170, 760, 285);
+		panel.setBounds(5, 170, 1000, 285);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		frame.setBounds(100, 100, 789, 519);
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				heap.pop();
+				displayHeap(heap);
+			}
+		});
+		btnRemove.setBounds(431, 48, 89, 23);
+		frame.getContentPane().add(btnRemove);
+
+		frame.setBounds(100, 100, 1010, 519);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void displayHeap(Heap heap) {
-		panel.removeAll();
+		if (!heap.isHeapFull()) {
+			panel.removeAll();
 
-		int rootX = 380;
-		int rootY = 5;
+			int rootX = 500;
+			int rootY = 5;
+			addNode(rootX, rootY, 1);
 
-		JButton root = new JButton(String.valueOf(heap.heap[1]));
-		root.setEnabled(false);
-		root.setBackground(Color.CYAN);
-		root.setBounds(rootX, rootY, buttonWidth, buttonHeight);
-		panel.add(root);
-
-		int i = 1; // heap index for root
-		while (i <= heap.size) {
-
-			if (2 * i <= heap.size) {
-				JButton leftChild = new JButton(String.valueOf(heap.heap[2 * i]));
-				leftChild.setEnabled(false);
-				leftChild.setBackground(Color.CYAN);
-				leftChild.setBounds(rootX - ((i + 1) * buttonWidth), rootY + ((i + 1) * buttonHeight), buttonWidth,
-						buttonHeight);
-				panel.add(leftChild);
-			}
-			if (2 * i + 1 <= heap.size) {
-				JButton rightChild = new JButton(String.valueOf(heap.heap[2 * i + 1]));
-				rightChild.setEnabled(false);
-				rightChild.setBackground(Color.CYAN);
-				rightChild.setBounds(rootX + ((i + 1) * buttonWidth), rootY + ((i + 1) * buttonHeight), buttonWidth,
-						buttonHeight);
-				panel.add(rightChild);
-			}
-			i = 2 * i;
+			panel.repaint();
 		}
-
-		panel.repaint();
 
 	}
 
+	private void addNode(int x, int y, int nodeIndex) {
+		if (nodeIndex <= heap.size) {
+			JButton node = new JButton(String.valueOf(heap.heap[nodeIndex]));
+			node.setEnabled(false);
+			node.setBackground(Color.CYAN);
+			node.setBounds(x, y, buttonWidth, buttonHeight);
+			panel.add(node);
+
+			if (heap.size >= nodeIndex * 2) {
+				addNode(x - calculateGap(nodeIndex) * buttonWidth, y + 2 * buttonHeight, nodeIndex * 2);
+			}
+			if (heap.size >= nodeIndex * 2 + 1) {
+				addNode(x + calculateGap(nodeIndex) * buttonWidth, y + 2 * buttonHeight, nodeIndex * 2 + 1);
+			}
+		}
+	}
+
+	private int calculateGap(int nodeIndex) {
+		if (nodeIndex == 1) {
+			return 4;
+		}
+		if (nodeIndex > 1 && nodeIndex < 4) {
+			return 2;
+		}
+
+		if (nodeIndex >= 4 && nodeIndex < 8) {
+			return 1;
+		}
+		return 1;
+	}
 }

@@ -39,24 +39,30 @@ public class Heap {
 		// size is 0 initially So, add the item as 1-based array index.
 		// So, basically we are appending item in last of array
 		size++;
-		heap[size] = item;
+		if (size < heap.length) {
 
-		int i = size; // i - is an iterator for tree bottom to up
+			heap[size] = item;
 
-		// consider 1-based index. So, root will be at heap[1]
-		// start traversing tree from bottom to top i.e last element added to root
-		// and make sure each node satisfies the condition of heap
-		// i/2 is the index of it's parent
-		int parentIndex = i / 2;
-		while (parentIndex >= 1) {
-			if (heap[i] > heap[parentIndex]) {
-				// swap
-				int temp = heap[i];
-				heap[i] = heap[parentIndex];
-				heap[parentIndex] = temp;
+			int i = size; // i - is an iterator for tree bottom to up
+
+			// consider 1-based index. So, root will be at heap[1]
+			// start traversing tree from bottom to top i.e last element added to root
+			// and make sure each node satisfies the condition of heap
+			// i/2 is the index of it's parent
+			int parentIndex = i / 2;
+			while (parentIndex >= 1) {
+				if (heap[i] > heap[parentIndex]) {
+					// swap
+					int temp = heap[i];
+					heap[i] = heap[parentIndex];
+					heap[parentIndex] = temp;
+				}
+				i = parentIndex; // previous parent Node becomes the iterating node
+				parentIndex = i / 2; // find new parent of current node
 			}
-			i = parentIndex; // previous parent Node becomes the iterating node
-			parentIndex = i / 2; // find new parent of current node
+		} else {
+			System.err.println("Heap is full, Can't push more element");
+			size--;
 		}
 	}
 
@@ -92,6 +98,11 @@ public class Heap {
 		}
 
 		return item;
+	}
+
+	public boolean isHeapFull() {
+		return heap.length <= size; // 1-based index
+
 	}
 
 	public void print() {
