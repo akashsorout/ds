@@ -30,6 +30,36 @@ public class LinkedList<T> {
         size++;
     }
 
+    public void addItemAtPosition(T item, int position) {
+        Node<T> node = new Node().setItem(item);
+        Node<T> pointer = head;
+
+        if (isEmpty()) {
+            head = node;
+            return;
+        }
+
+        if (position < 0) {
+            position = 0;
+        }
+
+        if (position > size) {
+            position = size;
+        }
+        if (position == 0) {
+            node.setNext(head);
+            head = node;
+            size++;
+            return;
+        }
+        for (int i = 0; i < position - 1; i++) {
+            pointer = pointer.getNext();
+        }
+        node.setNext(pointer.getNext());
+        pointer.setNext(node);
+        size++;
+    }
+
     public T deleteFromEnd() {
         if (!isEmpty()) {
             Node<T> pointer = head.getNext();
