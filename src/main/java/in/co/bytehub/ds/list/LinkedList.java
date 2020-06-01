@@ -52,13 +52,48 @@ public class LinkedList<T> {
             size++;
             return;
         }
-        for (int i = 0; i < position - 1; i++) {
+        for (int i = 1; i < position; i++) {
             pointer = pointer.getNext();
         }
         node.setNext(pointer.getNext());
         pointer.setNext(node);
         size++;
     }
+
+    public T deleteFromPosition(int position) {
+        Node<T> pointer = head;
+        if (isEmpty()) {  // size == 0
+            return null;
+        }
+        if (pointer.getNext() == null) { // size == 1
+            head = null;
+            size--;
+            return pointer.getItem();
+        }
+        if (position < 0) {
+            position = 0;
+        }
+        if (position >= size) {
+            position = size - 1; // Delete Last Element
+        }
+        for (int i = 1; i < position; i++) {
+            pointer = pointer.getNext();
+        }
+        if (pointer.getNext().getNext() == null) { // Delete Last Node
+            T item = (T) pointer.getNext().getItem();
+            pointer.setNext(null);
+            size--;
+            return item;
+        } else { // Delete from middle
+            Node nextNode = pointer.getNext().getNext();
+            T deletedItem = (T) pointer.getNext().getItem();
+            pointer.getNext().setNext(null);
+            pointer.setNext(nextNode);
+            size--;
+            return deletedItem;
+        }
+    }
+
 
     public T deleteFromEnd() {
         if (!isEmpty()) {
