@@ -18,6 +18,9 @@ public class DoublyLinkedListTester {
         System.out.println("doublyLinkedList.deleteFromEnd() = " + doublyLinkedList.deleteFromEnd());
         doublyLinkedList.display();
 
+        System.out.println("doublyLinkedList.deleteFromBeginning() = " + doublyLinkedList.deleteFromBeginning());
+        doublyLinkedList.display();
+
 
     }
 }

@@ -7,11 +7,10 @@ public class DoublyLinkedList<T> {
 
     public void addFromBeginning(T item) {
         DLLNode<T> node = new DLLNode<T>()
-                .setItem(item);
-        DLLNode<T> pointer = head;
+                .setItem(item)
+                .setNext(head);
         if (!isEmpty()) {
-            node.setNext(pointer);
-            pointer.setPrevious(node);
+            head.setPrevious(node);
         }
         head = node;
         size++;
@@ -52,6 +51,21 @@ public class DoublyLinkedList<T> {
         deletedItem = pointer.getItem();
         pointer.getPrevious().setNext(null);
         pointer.setPrevious(null);
+        size--;
+        return deletedItem;
+    }
+
+    public T deleteFromBeginning() {
+        if (isEmpty()) {
+            return null;
+        }
+        T deletedItem = null;
+        DLLNode<T> pointer = head;
+        deletedItem = pointer.getItem();
+        head = pointer.getNext();
+        if (pointer.getNext() != null) {
+            pointer.getNext().setPrevious(null);
+        }
         size--;
         return deletedItem;
     }
