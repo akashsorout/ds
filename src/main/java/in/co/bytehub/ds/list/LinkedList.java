@@ -118,7 +118,7 @@ public class LinkedList<T> {
         if (!isEmpty()) {
             Node<T> pointer = head;
             head = pointer.getNext();
-            pointer.setNext(null);
+//            pointer.setNext(null);
             size--;
             return pointer.getItem();
         } else {

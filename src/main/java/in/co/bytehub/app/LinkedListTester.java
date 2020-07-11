@@ -8,6 +8,10 @@ public class LinkedListTester {
 
         LinkedList<String> linkedList = new LinkedList<String>();
 
+        linkedList.deleteFromStart();
+        linkedList.deleteFromEnd();
+        linkedList.deleteFromPosition(10);
+
         linkedList.addItemFromStart("Item1");
         linkedList.addItemFromStart("Item2");
         linkedList.addItemFromStart("Item3");
