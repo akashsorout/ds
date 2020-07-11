@@ -34,11 +34,6 @@ public class LinkedList<T> {
         Node<T> node = new Node().setItem(item);
         Node<T> pointer = head;
 
-        if (isEmpty()) {
-            head = node;
-            return;
-        }
-
         if (position < 0) {
             position = 0;
         }
@@ -46,17 +41,19 @@ public class LinkedList<T> {
         if (position > size) {
             position = size;
         }
-        if (position == 0) {
+
+        if (isEmpty() || position == 0) {
             node.setNext(head);
             head = node;
-            size++;
-            return;
+        } else {
+            // If we want to add an element at position 3, we have to stop at position 2, One step before
+            for (int i = 0; i < position - 1; i++) {
+                pointer = pointer.getNext();
+            }
+            node.setNext(pointer.getNext());
+            pointer.setNext(node);
         }
-        for (int i = 1; i < position; i++) {
-            pointer = pointer.getNext();
-        }
-        node.setNext(pointer.getNext());
-        pointer.setNext(node);
+
         size++;
     }
 

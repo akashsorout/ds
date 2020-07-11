@@ -18,7 +18,9 @@ public class LinkedListTester {
         linkedList.addItemFromEnd("FirstFromEnd");
         linkedList.display();
 
-        linkedList.addItemAtPosition("FirstFromPosition", 14);
+        linkedList.addItemAtPosition("FirstFromPosition", 0);
+        linkedList.addItemAtPosition("SecondFromPosition", 1);
+        linkedList.addItemAtPosition("LastFromPosition", 14);
         linkedList.display();
 
         System.out.println("linkedList.deleteFromStart() = " + linkedList.deleteFromStart());
