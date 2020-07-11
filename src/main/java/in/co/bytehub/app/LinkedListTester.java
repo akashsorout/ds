@@ -33,8 +33,12 @@ public class LinkedListTester {
         System.out.println("linkedList.deleteFromEnd() = " + linkedList.deleteFromEnd());
         linkedList.display();
 
-        System.out.println("linkedList.deleteFromPosition(2) = " + linkedList.deleteFromPosition(12));
+        System.out.println("linkedList.deleteFromPosition(2) = " + linkedList.deleteFromPosition(2));
         linkedList.display();
+
+        System.out.println("linkedList.deleteFromPosition(12) = " + linkedList.deleteFromPosition(12));
+        linkedList.display();
+
 
     }
 }

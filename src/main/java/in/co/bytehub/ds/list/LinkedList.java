@@ -73,7 +73,7 @@ public class LinkedList<T> {
         if (position >= size) {
             position = size - 1; // Delete Last Element
         }
-        for (int i = 1; i < position; i++) {
+        for (int i = 0; i < position - 1; i++) {
             pointer = pointer.getNext();
         }
         if (pointer.getNext().getNext() == null) { // Delete Last Node
