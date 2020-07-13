@@ -8,6 +8,10 @@ public class LinkedListTester {
 
         LinkedList<String> linkedList = new LinkedList<String>();
 
+        linkedList.deleteFromStart();
+        linkedList.deleteFromEnd();
+        linkedList.deleteFromPosition(10);
+
         linkedList.addItemFromStart("Item1");
         linkedList.addItemFromStart("Item2");
         linkedList.addItemFromStart("Item3");
@@ -18,7 +22,9 @@ public class LinkedListTester {
         linkedList.addItemFromEnd("FirstFromEnd");
         linkedList.display();
 
-        linkedList.addItemAtPosition("FirstFromPosition", 14);
+        linkedList.addItemAtPosition("FirstFromPosition", 0);
+        linkedList.addItemAtPosition("SecondFromPosition", 1);
+        linkedList.addItemAtPosition("LastFromPosition", 14);
         linkedList.display();
 
         System.out.println("linkedList.deleteFromStart() = " + linkedList.deleteFromStart());
@@ -27,8 +33,12 @@ public class LinkedListTester {
         System.out.println("linkedList.deleteFromEnd() = " + linkedList.deleteFromEnd());
         linkedList.display();
 
-        System.out.println("linkedList.deleteFromPosition(2) = " + linkedList.deleteFromPosition(12));
+        System.out.println("linkedList.deleteFromPosition(2) = " + linkedList.deleteFromPosition(2));
         linkedList.display();
+
+        System.out.println("linkedList.deleteFromPosition(12) = " + linkedList.deleteFromPosition(12));
+        linkedList.display();
+
 
     }
 }

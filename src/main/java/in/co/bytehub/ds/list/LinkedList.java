@@ -42,13 +42,12 @@ public class LinkedList<T> {
             position = size;
         }
 
-        if (isEmpty()) {
-            head = node;
-        } else if (position == 0) {
+        if (isEmpty() || position == 0) {
             node.setNext(head);
             head = node;
         } else {
-            for (int i = 1; i < position; i++) {
+            // If we want to add an element at position 3, we have to stop at position 2, One step before
+            for (int i = 0; i < position - 1; i++) {
                 pointer = pointer.getNext();
             }
             node.setNext(pointer.getNext());
@@ -74,7 +73,7 @@ public class LinkedList<T> {
         if (position >= size) {
             position = size - 1; // Delete Last Element
         }
-        for (int i = 1; i < position; i++) {
+        for (int i = 0; i < position - 1; i++) {
             pointer = pointer.getNext();
         }
         if (pointer.getNext().getNext() == null) { // Delete Last Node
@@ -119,7 +118,7 @@ public class LinkedList<T> {
         if (!isEmpty()) {
             Node<T> pointer = head;
             head = pointer.getNext();
-            pointer.setNext(null);
+//            pointer.setNext(null);
             size--;
             return pointer.getItem();
         } else {
