@@ -149,4 +149,8 @@ public class LinkedList<T> {
     public int getSize() {
         return size;
     }
+
+    public Node<T> getHead(){
+        return head;
+    }
 }
