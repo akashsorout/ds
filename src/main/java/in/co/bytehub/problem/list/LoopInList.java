@@ -37,6 +37,9 @@ public class LoopInList {
 
         Node<String> loopPoint = getLoopPoint(head);
         System.out.println("loopPoint = " + loopPoint.getItem());
+
+        removeLoop(head);
+        list.display();
     }
 
     private static boolean isLoopExist(Node<String> head) {
@@ -79,5 +82,42 @@ public class LoopInList {
         }
 
         return loopingPoint;
+    }
+
+    private static void removeLoop(Node<String> head) {
+        Node<String> fastPointer = head;
+        Node<String> slowPointer = head;
+
+        boolean isLoopPresent = false;
+
+        while (fastPointer != null && fastPointer.getNext() != null) {
+            fastPointer = fastPointer.getNext().getNext();
+            slowPointer = slowPointer.getNext();
+            if (slowPointer == fastPointer) {
+                isLoopPresent = true;
+                break;
+            }
+        }
+        if(isLoopPresent){
+            slowPointer = head;  // either of slowPointer | fastPointer
+            while (slowPointer != fastPointer){
+                slowPointer = slowPointer.getNext();
+                fastPointer = fastPointer.getNext();
+            }
+
+            // Compute Length of LOOP
+            int lengthOfLoop = 1;
+            fastPointer = fastPointer.getNext(); // Can use either of slowPointer | fastPointer
+
+            while (slowPointer != fastPointer){
+                fastPointer = fastPointer.getNext();  // same must be used as on line 110
+                ++ lengthOfLoop;
+            }
+            System.out.println("lengthOfLoop = " + lengthOfLoop);
+            for (int i = 1; i < lengthOfLoop; i++) {
+                slowPointer = slowPointer.getNext();
+            }
+            slowPointer.setNext(null); // finally removing loop
+        }
     }
 }
