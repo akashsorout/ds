@@ -16,7 +16,7 @@ public class LoopInList {
         list.addItemFromEnd("Item6");
         list.addItemFromEnd("Item7");
         list.addItemFromEnd("Item8");
-     //   list.addItemFromEnd("Item9");
+        list.addItemFromEnd("Item9");
 
         list.display();
 
@@ -25,15 +25,18 @@ public class LoopInList {
 
         Node<String> loopNode = head.getNext().getNext();
         Node<String> pointer = head;
-        while (pointer.getNext() != null){
+
+        while (pointer.getNext() != null) {
             pointer = pointer.getNext();
         }
+
         pointer.setNext(loopNode);
-
-
 
         boolean loopExist = isLoopExist(list.getHead());
         System.out.println("loopExist = " + loopExist);
+
+        Node<String> loopPoint = getLoopPoint(head);
+        System.out.println("loopPoint = " + loopPoint.getItem());
     }
 
     private static boolean isLoopExist(Node<String> head) {
@@ -43,13 +46,38 @@ public class LoopInList {
         Node<String> slowPointer = head;
         Node<String> fastPointer = head;
 
-        while (fastPointer!= null && fastPointer.getNext() != null){
+        while (fastPointer != null && fastPointer.getNext() != null) {
             slowPointer = slowPointer.getNext();
             fastPointer = fastPointer.getNext().getNext();
-            if(slowPointer == fastPointer)
+            if (slowPointer == fastPointer)
                 return true;
         }
 
         return false;
+    }
+
+    private static Node<String> getLoopPoint(Node<String> head) {
+        Node<String> loopingPoint = null;
+        Node<String> fastPointer = head;
+        Node<String> slowPointer = head;
+        boolean isLoopPresent = false;
+        while (fastPointer != null && fastPointer.getNext() != null) {
+            fastPointer = fastPointer.getNext().getNext();
+            slowPointer = slowPointer.getNext();
+            if (slowPointer == fastPointer) {
+                isLoopPresent = true;
+                break;
+            }
+        }
+        if (isLoopPresent) {
+            slowPointer = head;
+            while (slowPointer != fastPointer) {
+                slowPointer = slowPointer.getNext();
+                fastPointer = fastPointer.getNext();
+            }
+            loopingPoint = slowPointer;  // either one of slowPointer | fastPointer
+        }
+
+        return loopingPoint;
     }
 }
