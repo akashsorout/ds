@@ -3,13 +3,11 @@ package in.co.bytehub.problem.list;
 import in.co.bytehub.ds.list.LinkedList;
 import in.co.bytehub.ds.list.Node;
 
-import java.util.List;
-
 public class ReverseTheList {
 
     public static void main(String[] args) {
 
-        LinkedList<String> list = new LinkedList<>();
+        LinkedList<String> list = new LinkedList<String>();
         list.addItemFromEnd("Item1");
         list.addItemFromEnd("Item2");
         list.addItemFromEnd("Item3");
