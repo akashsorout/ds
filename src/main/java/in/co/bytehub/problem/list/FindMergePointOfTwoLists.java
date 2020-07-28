@@ -3,6 +3,8 @@ package in.co.bytehub.problem.list;
 import in.co.bytehub.ds.list.LinkedList;
 import in.co.bytehub.ds.list.Node;
 
+import java.util.HashSet;
+
 public class FindMergePointOfTwoLists {
 
     public static void main(String[] args) {
@@ -37,6 +39,9 @@ public class FindMergePointOfTwoLists {
         list2.display();
         Node<String> mergePointOfLists = findMergePointOfLists(list1.getHead(), list2.getHead());
         System.out.println("mergePointOfLists = " + mergePointOfLists.getItem());
+
+        Node<String> mergePointOfLists2 = findMergePointOfListsUsingHashSet(list1.getHead(), list2.getHead());
+        System.out.println("mergePointOfListUsingHashSet = " + mergePointOfLists2.getItem());
     }
 
     private static Node<String> findMergePointOfLists(Node<String> list1Head, Node<String> list2Head) {
@@ -77,5 +82,20 @@ public class FindMergePointOfTwoLists {
         }
 
         return shorterListPointer;
+    }
+
+    private static Node<String> findMergePointOfListsUsingHashSet(Node<String> list1Head, Node<String> list2Head) {
+
+        HashSet<Node<String>> list1Nodes = new HashSet<>();
+        Node<String> pointer = list1Head;
+        while (pointer != null){
+            list1Nodes.add(pointer);
+            pointer = pointer.getNext();
+        }
+        pointer = list2Head;
+        while (!list1Nodes.contains(pointer) && pointer != null){
+            pointer = pointer.getNext();
+        }
+        return pointer;
     }
 }
