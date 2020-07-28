@@ -22,4 +22,12 @@ public class Node<T> {
         this.next = next;
         return this;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Node{");
+        sb.append("item=").append(item);
+        sb.append('}');
+        return sb.toString();
+    }
 }
