@@ -26,6 +26,10 @@ public class Merge2SortedLists {
 
         LinkedList<Integer> sortedMergedLists = merge2SortedListsInEfficientSolution(list1.getHead(), list2.getHead());
         sortedMergedLists.display();
+
+        LinkedList<Integer> sortedListEfficientSolution = merge2SortedListEfficientSolution(list1.getHead(), list2.getHead());
+        sortedListEfficientSolution.display();
+
     }
 
     // Inefficient solution
@@ -59,5 +63,34 @@ public class Merge2SortedLists {
             longerListNode = longerListNode.getNext();
         }
         return sortedMergedList;
+    }
+
+    private static <K extends Comparable> LinkedList<K> merge2SortedListEfficientSolution(Node<K> list1, Node<K> list2){
+
+        LinkedList<K> mergedSortedList = new LinkedList<>();
+        Node<K> mergedListHead = new Node<>();
+        Node<K> mergedListPointer = mergedListHead;
+        Node<K> pointer1 = list1;
+        Node<K> pointer2 = list2;
+          while (pointer1 != null && pointer2 != null){
+              if(pointer1.getItem().compareTo(pointer2.getItem()) < 0){
+                 mergedListPointer.setNext(pointer1);
+                  pointer1 = pointer1.getNext();
+              }
+              else {
+                  mergedListPointer.setNext(pointer2);
+                  pointer2 = pointer2.getNext();
+              }
+              mergedListPointer = mergedListPointer.getNext();
+          }
+          if(pointer1 == null){
+              mergedListPointer.setNext(pointer2);
+          }
+          if (pointer2 == null){
+              mergedListPointer.setNext(pointer1);
+          }
+
+        mergedSortedList.setHead(mergedListHead.getNext());
+        return mergedSortedList;
     }
 }
