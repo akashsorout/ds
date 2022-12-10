@@ -13,6 +13,7 @@ public class TraversalApp {
         System.out.print("PostOrder          : \t"); postOrder(root); System.out.println("");
         System.out.print("InOrder            : \t"); inOrder(root); System.out.println("");
         System.out.print("BFS                : \t");bfs(root);
+        System.out.println("\nCalculate Height : \t" + calHeight(root, 0));
 
     }
 
@@ -49,5 +50,12 @@ public class TraversalApp {
         inOrder(root.getLeft());
         System.out.print(root.getData() + "\t");
         inOrder(root.getRight());
+    }
+
+    public static Integer calHeight(BinaryTreeNode root, Integer current) {
+        if (root == null) return 0;
+        Integer left = calHeight(root.getLeft(), current);
+        Integer right = calHeight(root.getRight(), current);
+        return right > left ? ++right : ++left;
     }
 }
