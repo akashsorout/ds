@@ -18,4 +18,25 @@ public class TreeUtil {
         rootR.setRight(rootRR);
         return root;
     }
+
+    public static BinaryTreeNode createTree(int nuOfNodes) {
+        BinaryTreeNode root = null;
+        for (int i = 1; i <=nuOfNodes; i++) {
+            root = insertNode(root, i);
+        }
+     return root;
+    }
+
+    private static BinaryTreeNode insertNode(BinaryTreeNode root, int data) {
+        if (root == null) return new BinaryTreeNode(data);
+        if (root.getLeft() == null) {
+            root.setLeft(new BinaryTreeNode(data));
+        } else if (root.getRight() == null) {
+            root.setRight(new BinaryTreeNode(data));
+        }
+        else {
+            insertNode(root.getLeft(), data);
+        }
+        return root;
+    }
 }

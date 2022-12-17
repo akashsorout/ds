@@ -47,4 +47,12 @@ public class BinaryTreeNode {
                 .add("data=" + data)
                 .toString();
     }
+
+    public Integer size() {
+        return size(this);
+    }
+    private Integer size(BinaryTreeNode root){
+        if(root == null) return 0;
+        return 1 + size(root.left) + size(root.right);
+    }
 }
