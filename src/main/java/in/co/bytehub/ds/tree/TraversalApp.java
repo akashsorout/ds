@@ -3,6 +3,7 @@ package in.co.bytehub.ds.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TraversalApp {
 
@@ -12,7 +13,8 @@ public class TraversalApp {
         System.out.print("PreOrder           : \t"); preOrder(root); System.out.println("");
         System.out.print("PostOrder          : \t"); postOrder(root); System.out.println("");
         System.out.print("InOrder            : \t"); inOrder(root); System.out.println("");
-        System.out.print("BFS                : \t");bfs(root);
+        System.out.print("BFS                : \t");bfs(root); System.out.println("");
+        System.out.print("BFS Reverse        : \t");printLevelOrderInReverse(root); System.out.println("");
         System.out.println("\nCalculate Height : \t" + calHeight(root, 0));
 
     }
@@ -57,5 +59,29 @@ public class TraversalApp {
         Integer left = calHeight(root.getLeft(), current);
         Integer right = calHeight(root.getRight(), current);
         return right > left ? ++right : ++left;
+    }
+
+    public static void printLevelOrderInReverse(BinaryTreeNode root) {
+        if(root == null) return;
+        Stack<Integer> stack = new Stack<>();
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        stack.push(root.getData());
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = queue.poll();
+            if( currentNode != null) {
+                if(currentNode.getRight() != null) {
+                    queue.offer(currentNode.getRight());
+                    stack.push(currentNode.getRight().getData());
+                }
+                if(currentNode.getLeft() != null) {
+                    queue.offer(currentNode.getLeft());
+                    stack.push(currentNode.getLeft().getData());
+                }
+            }
+        }
+        while (!stack.isEmpty()){
+            System.out.print(stack.pop() + "\t");
+        }
     }
 }
