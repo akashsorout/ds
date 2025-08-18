@@ -5,16 +5,26 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class TraversalApp {
+public class TraversalRecursive {
 
     public static void main(String[] args) {
         BinaryTreeNode root = TreeUtil.createSampleTree();
 
-        System.out.print("PreOrder           : \t"); preOrder(root); System.out.println("");
-        System.out.print("PostOrder          : \t"); postOrder(root); System.out.println("");
-        System.out.print("InOrder            : \t"); inOrder(root); System.out.println("");
-        System.out.print("BFS                : \t");bfs(root); System.out.println("");
-        System.out.print("BFS Reverse        : \t");printLevelOrderInReverse(root); System.out.println("");
+        System.out.print("PreOrder           : \t");
+        preOrder(root);
+        System.out.println("");
+        System.out.print("PostOrder          : \t");
+        postOrder(root);
+        System.out.println("");
+        System.out.print("InOrder            : \t");
+        inOrder(root);
+        System.out.println("");
+        System.out.print("BFS                : \t");
+        bfs(root);
+        System.out.println("");
+        System.out.print("BFS Reverse Bottom to top       : \t");
+        printLevelOrderInReverse(root);
+        System.out.println("");
         System.out.println("\nCalculate Height : \t" + calHeight(root));
 
     }
